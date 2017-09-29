@@ -11,11 +11,11 @@ require 'choice'
 
 RSpec.configure do |config|
   config.after(:each) do
-    Brand.all.each do |question|
-      question.destroy()
+    Brand.all.each do |brand|
+      brand.destroy()
     end
-    Store.all().each() do |choice|
-      choice.destroy()
+    Store.all().each() do |store|
+      store.destroy()
     end
   end
 end

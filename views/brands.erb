@@ -1,0 +1,9 @@
+<% if @brands.any? %>
+  <% @brands.each do |brand| %>
+  <ul>
+    <li><a href="/brands/<%=brand.id %>"><%=brand.title %></a></li>
+  </ul>
+  <% end %>
+<% else %>
+  <p>There are no brands yet.</p>
+<% end %>
