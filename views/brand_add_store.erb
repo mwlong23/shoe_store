@@ -3,15 +3,12 @@
   <ul>
     <%if @stores.any? %>
       <%@stores.each do |store| %>
-
-      <div class="checkbox">
-        <label>
           <input type="checkbox">
             <li>
               <input type="checkbox" name="<%=store.name %>"><a href="/brands/<%=store.id %>"><%=store.name %></a>
             </li>
-        </label>
-      </div>
+
+
 
     <% end %>
     <% else %>
