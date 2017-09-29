@@ -4,9 +4,8 @@ ENV['RACK_ENV'] = 'test'
 require("sinatra/activerecord")
 require 'rspec'
 require 'pg'
-require 'survey'
-require 'question'
-require 'choice'
+require 'brand'
+require 'store'
 
 
 RSpec.configure do |config|

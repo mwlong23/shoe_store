@@ -1,0 +1,22 @@
+<h1>Please Select the retailers that carry <%=@brand.name%> </h1>
+<form class="form-group" action="/add_stores_success/<%=@brand.id%>" method="post">
+  <ul>
+    <%if @stores.any? %>
+      <%@stores.each do |store| %>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox">
+            <li>
+              <input type="checkbox" name="<%=store.name %>"><a href="/brands/<%=store.id %>"><%=store.name %></a>
+            </li>
+        </label>
+      </div>
+
+    <% end %>
+    <% else %>
+    <p>There are no brands yet.</p>
+    <% end %>
+  </ul>
+  <button type="submit" class="btn btn-primary" >submit</button>
+</form>

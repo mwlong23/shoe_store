@@ -92,3 +92,20 @@ delete('/brand_edit/:id') do
   Brand.destroy(params[:id].to_i)
   redirect('/brands')
 end
+
+get('/brand_add_store/:id') do
+  @stores = Store.all
+  @brand = Brand.find(params["id"])
+  erb(:brand_add_store)
+end
+
+post('/add_stores_success/:id') do
+  binding.pry
+
+@brand = Brand.find([:id])
+  erb(:add_stores_success)
+end
+
+
+
+# https://learn.co/lessons/sinatra-complex-forms-associations
