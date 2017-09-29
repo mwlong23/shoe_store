@@ -1,7 +1,7 @@
 <% if @brands.any? %>
   <% @brands.each do |brand| %>
   <ul>
-    <li><a href="/brands/<%=brand.id %>"><%=brand.title %></a></li>
+    <li><a href="/brands/<%=brand.id %>"><%=brand.name %></a></li>
   </ul>
   <% end %>
 <% else %>
