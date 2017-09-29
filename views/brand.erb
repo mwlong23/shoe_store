@@ -1,0 +1,26 @@
+
+
+
+<a href='/brands' class="btn btn-primary" role="button">Return to Brands</a>
+<a href='/brand_edit/<%=@brand.id %>' class="btn btn-success" role="button">Edit Brand</a>
+<form class="form-group" action='/brand_edit/<%=@brand.id %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input id="delete_brand" name="delete_brand" type="hidden" value="<%= @brand.id%>">
+  <button  type="submit" class="btn btn-danger action">Delete This Brand</button>
+</form>
+
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1><%= @brand.name %> can be found at these retailers:</h>
+
+
+
+  </div>
+  <div class="col-sm-6">
+
+  </div>
+
+</div>
