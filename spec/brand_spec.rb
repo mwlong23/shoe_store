@@ -13,3 +13,10 @@ describe(Brand) do
     expect(brand.save()).to(eq(false))
   end
 end
+
+# describe(Task) do
+#   it("converts the name to lowercase") do
+#     task = Task.create({:description => "FINAGLE THE BUFFALO"})
+#     expect(task.description()).to(eq("finagle the buffalo"))
+#   end
+# end

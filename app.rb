@@ -36,8 +36,12 @@ end
 post('/new_brand') do
   brand_name = params['new_brand_name']
   price = params['price']
-  @brand = Brand.create({name: brand_name, price: price})
-  redirect("/brands")
+  @brand = Brand.new({name: brand_name, price: price})
+  if @brand.save()
+    redirect("/brands")
+  else
+    erb(:brand_errors)
+  end
 end
 
 get('/new_store') do
@@ -47,8 +51,12 @@ end
 post('/new_store') do
 
   store_name = params['new_store_name']
-  @store = Store.create({name: store_name})
-  redirect "/stores/#{@store.id}"
+  @store = Store.new({name: store_name})
+  if @store.save()
+    redirect "/stores/#{@store.id}"
+  else
+    erb(:store_errors)
+  end
 end
 
 get('/store_edit/:id') do
