@@ -108,9 +108,10 @@ get('/brand_add_store/:id') do
 end
 
 post('/add_stores_success/:id') do
+  @stores_ids = params.fetch('brand')
   binding.pry
 
-@brand = Brand.find([:id])
+# @brand = Brand.find([:id])
   erb(:add_stores_success)
 end
 
