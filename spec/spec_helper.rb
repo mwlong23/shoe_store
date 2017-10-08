@@ -8,6 +8,7 @@ require 'brand'
 require 'store'
 
 
+
 RSpec.configure do |config|
   config.after(:each) do
     Brand.all.each do |brand|

@@ -14,8 +14,7 @@ class Brand < ActiveRecord::Base
 
   def capitalize_first_letters_name
     name = self.name.split(" ")
-
-      self.name = name.map{|word| word.capitalize}.join(" ")
-
+    self.name = name.map{|word| word.capitalize}.join(" ")
   end
+
 end

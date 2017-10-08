@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Pacifico');
+.jumbotron h2{
+  font-family: 'Pacifico', cursive;
+  color: black;
+}
+
+.jumbotron  {
+  background-color: grey;
+}
+
+.jumbotron p {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+}

@@ -6,17 +6,16 @@ describe(Store) do
     store = Store.new({:name => ""})
     expect(store.save()).to(eq(false))
   end
-end
 
-  describe(Store) do
-    it("ensures the length of name is at most 101 characters") do
-      store = Store.new({:name => "a".*(100)})
-      expect(store.save()).to(eq(false))
-    end
+  it("ensures the length of name is at most 101 characters") do
+    store = Store.new({:name => "a".*(100)})
+    expect(store.save()).to(eq(false))
   end
-  # describe(Task) do
-  #   it("converts the name to lowercase") do
-  #     task = Task.create({:description => "FINAGLE THE BUFFALO"})
-  #     expect(task.description()).to(eq("finagle the buffalo"))
-  #   end
-  # end
+
+  it 'checks # capitalize_first_letters_name' do
+    store = Store.new({name: "walmart"})
+    store.save()
+    expect(store.name).to(eq("Walmart"))
+  end
+  # it {should have_many_and_belong_to_many(:brands) }
+end

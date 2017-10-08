@@ -6,13 +6,20 @@ describe(Brand) do
     brand = Brand.new({:name => ""})
     expect(brand.save()).to(eq(false))
   end
-end
-describe(Brand) do
+
   it("ensures the length of name is at most 101 characters") do
     brand = Brand.new({:name => "a".*(100)})
     expect(brand.save()).to(eq(false))
   end
+
+  # it 'checks # capitalize_first_letters_name' do
+  #   brand = Brand.new({name: "adidas"})
+  #   brand.save()
+  #   expect(brand.name).to(eq("Adidas"))
+  # end
+
 end
+
 
 # describe(Task) do
 #   it("converts the name to lowercase") do
