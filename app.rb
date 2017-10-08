@@ -21,6 +21,7 @@ get('/stores') do
 end
 get('/stores/:id') do
     @store = Store.find(params[:id].to_i)
+    @brands = @store.brands
   erb(:store)
 end
 
@@ -30,6 +31,9 @@ end
 
 get('/brands/:id') do
   @brand = Brand.find(params[:id])
+  @stores = @brand.stores
+  # ^ THIS RETURNS AN EMPTY ARRAY
+
   erb(:brand)
 end
 
@@ -37,6 +41,7 @@ post('/new_brand') do
   brand_name = params['new_brand_name']
   price = params['price']
   @brand = Brand.new({name: brand_name, price: price})
+  @brand.store_ids = nil
   if @brand.save()
     redirect("/brands")
   else
@@ -52,6 +57,7 @@ post('/new_store') do
 
   store_name = params['new_store_name']
   @store = Store.new({name: store_name})
+  @store.brand_ids = nil
   if @store.save()
     redirect "/stores/#{@store.id}"
   else
@@ -74,7 +80,6 @@ end
 
 delete('/store_edit/:id') do
   this_store = Store.find(params['id'])
-
   Store.destroy(params[:id].to_i)
   redirect('/stores')
 end
@@ -95,8 +100,6 @@ end
 
 delete('/brand_edit/:id') do
   this_brand = Brand.find(params['id'])
-  # binding.pry
-  #something broken here
   Brand.destroy(params[:id].to_i)
   redirect('/brands')
 end
@@ -107,12 +110,28 @@ get('/brand_add_store/:id') do
   erb(:brand_add_store)
 end
 
-post('/add_stores_success/:id') do
-  @stores_ids = params.fetch('brand')
-  binding.pry
+get('/store_add_brand/:id') do
+  @brands = Brand.all
+  @store = Store.find(params['id'])
+  erb(:store_add_brand)
+end
 
-# @brand = Brand.find([:id])
-  erb(:add_stores_success)
+patch('/add_stores_success/:id') do
+  @brand_id = params[:id].to_i
+  @brand = Brand.find(@brand_id)
+  @stores_ids = params['store_ids']
+  @stores = Store.find(params['store_ids'])
+  @brand.update({store_ids: @stores_ids})
+  redirect "/brands/#{@brand_id}"
+end
+
+patch('/add_brands_success/:id') do
+  @store_id = params[:id].to_i
+  @store = Store.find(@store_id)
+  @brands_ids = params['brand_ids']
+  @brands= Brand.find(params['brand_ids'])
+  @store.update({brand_ids: @brands_ids})
+  redirect "/stores/#{@store_id}"
 end
 
 

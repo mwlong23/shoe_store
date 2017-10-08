@@ -1,6 +1,3 @@
-
-
-
 <a href='/brands' class="btn btn-primary" role="button">Return to Brands</a>
 <a href='/brand_edit/<%=@brand.id %>' class="btn btn-success" role="button">Edit Brand</a>
 <form class="form-group" action='/brand_edit/<%=@brand.id %>' method="post">
@@ -9,19 +6,22 @@
   <button  type="submit" class="btn btn-danger action">Delete This Brand</button>
 </form>
 
-
-
-
-
 <div class="row">
   <div class="col-sm-6">
-    <h1><%= @brand.name %> can be found at these retailers:</h>
+    <h1><%= @brand.name %> can be found at these retailers:</h1>
+      <% if @stores.any? %>
+          <% @stores.each do |store| %>
+            <ul>
+              <a href="/stores/<%=store.id%> "><li>  <%= store.name %> </li></a>
+            </ul>
+          <% end %>
+        <% else %>
+           <p>There are no stores that cary this brand yet. </p>
+        <% end %>
       <h1>Add a retailer where this brand can be found.</h1>
       <a href='/brand_add_store/<%=@brand.id%>' class="btn btn-primary" role="button">Add A Store</a>
-      
   </div>
+
   <div class="col-sm-6">
-
   </div>
-
 </div>

@@ -1,0 +1,18 @@
+<h1>Please Select all Brands that <%=@store.name%> carries.</h1>
+<form class="form-group" action="/add_brands_success/<%=@store.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+    <%if @brands.any? %>
+      <%@brands.each do |brand| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="brand_ids[]" value="<%= brand.id() %>"><%= brand.name() %>
+          </label>
+        </div>
+      <% end %>
+    <% else %>
+    <p>There are no stores that carry this brand yet, you may add one.</p>
+    <% end %>
+
+  <button type="submit" class="btn btn-primary" >submit</button>
+</form>

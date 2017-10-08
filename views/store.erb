@@ -1,21 +1,32 @@
 <h1> <%=@store.name%> </h1>
 <h1> <%=@store_id%> </h1>
 
+<a href='/stores' class="btn btn-primary" role="button">Return to Stores</a>
+<a href='/store_edit/<%=@store.id %>' class="btn btn-success" role="button">Edit Store Name</a>
+<form class="form-group" action='/store_edit/<%=@store.id %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input id="delete_store" name="delete_store" type="hidden" value="<%= @store.id%>">
+  <button  type="submit" class="btn btn-danger action">Delete This Store</button>
+</form>
 
 <div class="row">
   <div class="col-sm-6">
     <h2>Brands <%=@store.name%> carries:</h2>
-
-
-
+    <% if @brands.any? %>
+    <h2>Brands <%=@store.name%> carries:</h2>
+        <% @brands.each do |brand| %>
+          <ul>
+            <a href="/brands/<%=brand.id%> "><li>  <%= brand.name %> </li></a>
+          </ul>
+        <% end %>
+      <% else %>
+         <p><%=@store.name%> doesn't carry any brands yet.</p>
+      <% end %>
+      <h1>Add a retailer where this brand can be found.</h1>
+      <a href='/store_add_brand/<%=@store.id%>' class="btn btn-primary" role="button">Add An Existing Brand</a>
+      <a href='/new_brand' class="btn btn-primary" role="button">Add A New Brand</a>
   </div>
   <div class="col-sm-6">
-    <a href='/stores' class="btn btn-primary" role="button">Return to Stores</a>
-    <a href='/store_edit/<%=@store.id %>' class="btn btn-success" role="button">Edit Store Name</a>
-    <form class="form-group" action='/store_edit/<%=@store.id %>' method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input id="delete_store" name="delete_store" type="hidden" value="<%= @store.id%>">
-      <button  type="submit" class="btn btn-danger action">Delete This Store</button>
-    </form>
+
   </div>
 </div>
