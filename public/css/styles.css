@@ -12,3 +12,9 @@
   font-family: 'Oswald', sans-serif;
   color: white;
 }
+
+.thumbnail img{
+  max-width: 60%;
+  max-height: 60%;
+
+}
